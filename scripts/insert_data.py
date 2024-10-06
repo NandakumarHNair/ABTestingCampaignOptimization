@@ -22,7 +22,7 @@ for i in range(1, num_rows + 1):
     date = random_date(datetime(2024, 1, 1), datetime(2024, 1, 31)).strftime('%Y-%m-%d')
 
     cursor.execute("""
-        INSERT INTO campaign_data (user_id, group_name, conversion, date)
+        INSERT OR REPLACE INTO campaign_data (user_id, group_name, conversion, date)
         VALUES (?, ?, ?, ?)
     """, (user_id, group_name, conversion, date))
 
@@ -31,4 +31,3 @@ conn.commit()
 conn.close()
 
 print(f"Inserted {num_rows} rows into campaign_data table.")
-
